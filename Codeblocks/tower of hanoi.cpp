@@ -1,21 +1,21 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void towerOfHanoi(int n, char source, char auxilary, char destination)
+void toh(int n, char s, char a, char d)
 {
     if (n == 1)
-        cout << "move disk 1 from " << source << " to " << destination << endl;
+        cout << "move disk 1 from " << s << " to " << d << endl;
     else
     {
-        towerOfHanoi(n - 1, source, destination, auxilary);
-        cout << "move disk " << n << " from " << source << " to " << destination << endl;
-        towerOfHanoi(n - 1, auxilary, source, destination);
+        toh(n - 1, s, d, a);
+        cout << "move disk " << n << " from " << s << " to " << d << endl;
+        toh(n - 1, a, s, d);
     }
 }
 int main()
 {
     int n;
     cin >> n;
-    towerOfHanoi(n, 'A', 'B', 'C');
+    toh(n, 'S', 'A', 'D');
     return 0;
 }

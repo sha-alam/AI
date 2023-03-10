@@ -1,9 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-const int Max = 100000;
-bool visited[Max];
-vector<int> dist(Max);
+bool visited[1000]={false};
 void bfs(int src, vector<int> g[])
 {
     queue<int> q;
@@ -12,37 +10,33 @@ void bfs(int src, vector<int> g[])
     while (!q.empty())
     {
         int cur = q.front();
+        cout<<cur<<" ";
         q.pop();
         for (auto child : g[cur])
         {
             if (!visited[child])
             {
                 q.push(child);
-                dist[child] = dist[cur] + 1;
                 visited[child] = true;
             }
         }
     }
 }
-
 int main()
 {
-    int n, m, t;
-    cin >> t;
-    while (t--)
+    int n, e,s;
+    cout<<"Enter Node and Edge Number"<<endl;
+    cin >>n>> e;
+    vector<int> g[n + 1];
+    cout<<"Enter the Graph"<<endl;
+    while (e--)
     {
-        cin >> n >> m;
-        for (int i = 1; i <= n; i++)
-            visited[i] = false;
-        vector<int> g[n + 1];
-        while (m--)
-        {
-            int u, v;
-            cin >> u >> v;
-            g[u].push_back(v);
-            g[v].push_back(u);
-        }
-        bfs(1, g);
-        cout << dist[n] << endl;
+        int u, v;
+        cin >> u >> v;
+        g[u].push_back(v);
+        g[v].push_back(u);
     }
+    cout<<"Enter the start vertices: ";
+    cin>>s;
+    bfs(s, g);
 }
